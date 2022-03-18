@@ -1,1 +1,30 @@
-<p>calendar works!</p>
+<table>
+	<thead>
+		<tr>
+			<th>Пн</th>
+			<th>Вт</th>
+			<th>Ср</th>
+			<th>Чт</th>
+			<th>Пт</th>
+			<th>Сб</th>
+			<th>Вс</th>
+		</tr>
+	</thead>
+
+	<tbody>
+		<tr *ngFor = "let week of calendar">
+			<td 
+			   *ngFor = "let day of week.days"
+               [class.disabled] = "day.disabled" 
+               [class.selected] = "day.selected"
+               (click) = "select(day.value)"
+			>
+				<span
+                    [class.active] = "day.active"
+				>
+					{{ day.value | moment: 'DD' }}
+				</span>
+			</td>
+		</tr>
+	</tbody>
+</table>
