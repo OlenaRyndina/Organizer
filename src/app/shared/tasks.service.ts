@@ -58,7 +58,6 @@ export class TasksService {
 		return this.http
 		           .put<CreateResponse>(`${TasksService.url}/${task.date}/${task.id}.json`, task)
 		           .pipe(map(res => {
-		           	console.log(task);
 		           	return {...task}
 		           }));
 	}

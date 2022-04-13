@@ -27,17 +27,9 @@ export class FormUpdateComponent implements OnInit {
   submit() {
       const {title} = this.form.value;
       this.taskUpdate.title = title;
-      /*this.tasks.forEach((task, i) => {
-        if (task.id === this.taskUpdate.id) {
-           this.tasks.splice(i, 1, this.taskUpdate);
-        }
-      return this.tasks;
-      })*/ 
       this.tasksService.update(this.taskUpdate).subscribe(taskUpdate => {
-        console.log(this.tasks);
 
           this.tasks.forEach((task, i) => {
-            console.log(task);
               if (task.id === taskUpdate.id) {
                   this.tasks.splice(i, 1, taskUpdate);
               }
