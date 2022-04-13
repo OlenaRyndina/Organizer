@@ -36,7 +36,7 @@ export class TasksService {
 		        		let task = {...tasks[i], id: i};
 		        		tasksCollection.push(task);
 		        	}
-                    console.log(tasksCollection);
+		        	console.log(tasksCollection);
 		        	return tasksCollection	        	
 		        }))
 	}
@@ -52,5 +52,14 @@ export class TasksService {
 	remove(task: Task): Observable<void> {
 		return this.http
 		           .delete<void>(`${TasksService.url}/${task.date}/${task.id}.json`)
+	}
+
+	update(task: Task): Observable<Task> {
+		return this.http
+		           .put<CreateResponse>(`${TasksService.url}/${task.date}/${task.id}.json`, task)
+		           .pipe(map(res => {
+		           	console.log(task);
+		           	return {...task}
+		           }));
 	}
 }

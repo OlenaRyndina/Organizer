@@ -13,6 +13,8 @@ export class OrganizerComponent implements OnInit {
 
   form!: FormGroup;
   tasks: Task[] = [];
+  shown = false;
+  taskUpdate!: Task;
 
   constructor(public dateService: DateService,
               public tasksService: TasksService) { }
@@ -47,6 +49,15 @@ export class OrganizerComponent implements OnInit {
     this.tasksService.remove(task).subscribe(() => {
       this.tasks = this.tasks.filter(t => t.id !== task.id)
     }, err => console.error(err))
+  }
+
+  update(task: Task) {
+    this.shown = true;
+    this.taskUpdate = task;
+  }
+
+  closeFormUpdate () {
+    this.shown = false;
   }
 
 }

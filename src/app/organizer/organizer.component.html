@@ -11,7 +11,10 @@
 					<strong>{{i + 1}}</strong>
 					{{task.title}}
 				</span>
-				<button class="btn btn-primary" (click) = "remove(task)">Remove</button>
+				<div>
+                    <button class="btn btn-primary" (click) = "remove(task)">Remove</button>
+				<button class="btn btn-info" (click) = "update(task)">Update</button>
+				</div>
 			</li>
 		</ul>
 		<ng-template #noTasks>
@@ -30,4 +33,9 @@
 			</button>
 		</form>
 	</footer>
+	<app-form-update
+	    *ngIf = "shown"
+	    (closeFormUpdate) = "closeFormUpdate()"
+	    [tasks] = "tasks"
+	    [taskUpdate] = "taskUpdate"></app-form-update>
 </section>
